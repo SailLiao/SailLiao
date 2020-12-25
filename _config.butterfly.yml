@@ -18,6 +18,7 @@ menu:
      - 图书 || http://calibre.sailliao.top/ || fas fa-book
    工具||fas fa-list:
      - 数据结构可视化 || https://www.cs.usfca.edu/~galles/visualization/Algorithms.html || fas fa-tools
+   留言板: /guestbook/ || fas 
    # 友链: /link/ || fas fa-link
    # 关于: /about/ || fas fa-heart
 
@@ -244,14 +245,14 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
-  use:
+  use: Livere
   # - Valine
   # - Disqus
   text: true # Display the comment name next to the button
   # lazyload: The comment system will be load when comment element enters the browser's viewport.
   # If you set it to true, the comment count will be invalid
   lazyload: false
-  count: false # Display comment count in top_img
+  count: true # Display comment count in top_img
 
 # disqus
 # https://disqus.com/
@@ -273,7 +274,8 @@ disqusjs:
 # livere (來必力)
 # https://www.livere.com/
 livere:
-  uid:
+  enable: true
+  uid: MTAyMC8zOTM5Mi8xNTkxOQ==
 
 # gitalk
 # https://github.com/gitalk/gitalk
