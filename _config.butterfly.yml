@@ -95,7 +95,7 @@ index_img: https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1
 default_top_img:
 
 # The banner image of archive page
-archive_img:
+archive_img: https://img9.51tietu.net/pic/2019-091403/ahwjtaa2c4jahwjtaa2c4j.jpg
 
 # If the banner of tag page not setting, it will show the top_img
 # note: tag page, not tags page (子標籤頁面的 top_img)
