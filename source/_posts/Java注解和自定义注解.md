@@ -2,6 +2,7 @@
 title: Java注解和自定义注解
 date: 2020-12-24 14:51:21
 tags: Java
+cover: https://img9.51tietu.net/pic/2019-091409/tbmypk0d33qtbmypk0d33q.jpg
 ---
 
 注解在日常开发工作中使用的频率很高，不管是Java中的注解，还是Spring中的注解，在能熟练使用的时候还需要了解为什么。
