@@ -240,7 +240,7 @@ addtoany:
 comments:
   # Up to two comments system, the first will be shown as default
   # Choose: Disqus/Disqusjs/Livere/Gitalk/Valine/Utterances/Facebook Comments
-  use:
+  use: Livere
   # - Valine
   # - Disqus
   text: true # Display the comment name next to the button
@@ -269,7 +269,7 @@ disqusjs:
 # livere (來必力)
 # https://www.livere.com/
 livere:
-  uid:
+  uid: MTAyMC8zOTM5Mi8xNTkxOQ==
 
 # gitalk
 # https://github.com/gitalk/gitalk
