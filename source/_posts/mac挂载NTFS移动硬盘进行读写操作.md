@@ -1,5 +1,5 @@
 ---
-title: mac挂载NTFS移动硬盘进行读写操作
+title: Mac挂载NTFS移动硬盘进行读写操作
 date: 2020-12-24 17:27:25
 tags: 工具
 cover: https://img9.51tietu.net/pic/2019-091409/10zihc5v01d10zihc5v01d.jpg
