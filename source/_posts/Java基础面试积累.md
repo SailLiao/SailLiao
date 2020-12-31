@@ -55,3 +55,50 @@ public int  add(int a, int b , int c, int d){
 1. 热点代码。 如果一个方法的执行频率很高就表示优化的潜在价值就越大。那代码执行多少次才能确定为热点代码？这是根据编译器的编译模式来决定的。如果是客户端编译模式则次数是1500，服务端编译模式是10000。次数的大小可以通过-XX:CompileThreshold来调整。
 2. 方法体不能太大，jvm中被内联的方法会编译成机器码放在code cache中。如果方法体太大，则能缓存热点方法就少，反而会影响性能。
 3. 如果希望方法被内联，尽量用private、static、final修饰，这样jvm可以直接内联。如果是public、protected修饰方法jvm则需要进行类型判断，因为这些方法可以被子类继承和覆盖，jvm需要判断内联究竟内联是父类还是其中某个子类的方法。
+
+
+## Java8 新特性
+
+### Lambda 表达式
+
+```java
+new Thread(()->{
+    // do something
+}).start();
+```
+
+### 方法引用
+在学习lambda表达式之后，我们通常使用lambda表达式来创建匿名方法。然而，有时候我们仅仅是调用了一个已存在的方法。如下：
+```java
+Arrays.sort(stringsArray,(s1,s2)->s1.compareToIgnoreCase(s2));
+```
+在Java8中，我们可以直接通过方法引用来简写lambda表达式中已经存在的方法。
+```java
+Arrays.sort(stringsArray, String::compareToIgnoreCase);
+```
+其中方法引用的操作符是双冒号"::"。
+
+### 默认方法 default
+
+这是Java语言的一个新特性，现在接口类里可以包含方法体（这就是 default 方法）了。这些方法会隐式的添加到实现这个接口的每个子类中。
+
+### 新工具
+Nashorn, JavaScript 引擎 
+
+### Stream API
+### Date Time API
+```java
+Date.toInstant()
+```
+该方法返回一个Instant，表示与此时间在时间​​轴上的同一点。
+
+### Optional 类
+一种更优雅的方式处理空指针
+
+![](1.png)
+
+例如
+
+```java
+String get = Optional.ofNullable("a").orElse("b");
+```
