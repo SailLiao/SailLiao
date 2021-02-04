@@ -5,7 +5,11 @@ tags: Spring Cloud
 cover: https://img9.51tietu.net/pic/2019-091403/0skqbqkfkdi0skqbqkfkdi.jpg
 ---
 
+看书做的简单笔记，书中有些方式已经过时，用的新的版本来做的，主要是学习的目的
+
 ## Spring boot
+
+在开始之前简单介绍下 Spring Boot
 
 在项目的 pom.xml 文件中 包含了下面两项。
 * spring-boot-starter-web : 全栈Web开发模块， 包含嵌入式Tomcat、 SpringMVC。
@@ -37,6 +41,7 @@ Starter POMs 是一系列轻便的依赖 包， 是一套一站式的Spring相�
 ### 实现RESTfulAPI
 很简单不再赘述
 ```java
+
 @RestController
 public class HelloController {
 
@@ -46,25 +51,32 @@ public class HelloController {
     }
 }
 ```
-通过浏览器访问http:/ /localhost: 8080/hello, 我们可以看到 返回了预期结果： Hello World。
+
+可以配置下端口之类的，默认是 8080， 默认的访问路径是 '', 在控制台也会有体现
+
+```log
+Tomcat started on port(s): 8080 (http) with context path ''
+```
+
+通过浏览器访问http://localhost:8080/hello, 我们可以看到 返回了预期结果： Hello World。
 
 ### 进行单元测试
 ```java
 
-import static org.hamcres七.Matchers.equalTo;
+import static org.hamcrest.Matchers.equalTo;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status; 
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = HelloApplication.class)
-@WebAppConfigura七ion
+@WebAppConfiguration
 public class HelloApplicationTests (
 
     private MockMvc mvc;
 
     @Before
-    public void se七Op() throws Exception {
+    public void setOp() throws Exception {
         mvc = MockMvcBuilders.standaloneSetup(new HelloController()).build() ;
     }
 
@@ -77,7 +89,7 @@ public class HelloApplicationTests (
 }
 ```
 代码解析如下。
-* @RunWith(SpringJUn辽4ClassRunner.class): 引入Spring对JUnit4的支持。
+* @RunWith(SpringJUnit4ClassRunner.class): 引入Spring对JUnit4的支持。
 * @SpringApplicationConfiguration(classes=HelloApplication.class): 指定Spring Boot的启动类。
 * @WebAppConfiguration: 开启Web应用的配置， 用千模拟ServletContext。
 * MockMvc对象： 用于模拟调用 Controller的接口发起请求， 在@Test定义的hello测试用例中， perform函数执行 一次请求调用， accept用于执行接收的数据类型，andExpect用于判断接口返回的期望值。
@@ -176,6 +188,32 @@ info.app.version=vl.0.0
 主要负责完成微服务架构中的服务治理功能
 
 ```xml
+
+<parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.1.5.RELEASE</version>
+</parent>
+
+<properties>
+    <java.version>1.8</java.version>
+    <spring-cloud.version>Greenwich.SR1</spring-cloud.version>
+</properties>
+
+<!-- spring-cloud -->
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-dependencies</artifactId>
+            <version>${spring-cloud.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
+
+<!-- eureka-server -->
 <dependencies>
     <dependency>
         <groupId>org.springframework.cloud</groupId>
@@ -183,6 +221,19 @@ info.app.version=vl.0.0
     </dependency>
 </dependencies>
 ```
+
+
+需要注意的是 Spring boot 的版本和 Spring cloud 的版本, 也简单学习下 dependencyManagement 这个标签
+
+> Maven约定优于配置的理解，dependencies 中的jar直接加到项目中，管理的是依赖关系（如果有父pom,子pom,则子pom中只能被动接受父类的版本）；dependencyManagement 主要管理版本，对于子类继承同一个父类是很有用的，集中管理依赖版本不添加依赖关系，对于其中定义的版本，子pom不一定要继承父pom所定义的版本。
+
+
+区别：
+1. dependencies 即使在子项目中不写该依赖项，那么子项目仍然会从父项目中继承该依赖项（全部继承）
+2. dependencyManagement 里只是声明依赖，并不实现引入，因此子项目需要显示的声明需要用的依赖。如果不在子项目中声明依赖，是不会从父项目中继承下来的；只有在子项目中写了该依赖项，并且没有指定具体版本，才会从父项目中继承该项，并且version和scope都读取自父pom;另外如果子项目中指定了版本号，那么会使用子项目中指定的jar版本。
+
+
+
 通过@EnableEurekaServer 注解启动一个服务注册中心提供给其他应用进行对话。
 ```java
 @EnableEurekaServer
@@ -210,66 +261,178 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
 ```
 
-现在我们 将一个既有的 springboot 服务加入到 eureka 服务中去
+然后访问端口就能看见我们的 Eureka Server 页面了，但是这个时候没有任何客户端注册进来
 
-```xml
-<dependencies>
-    <dependency>
-        <groupid>org.springframework.boot</groupid>
-        <artifactid>spring-boot-starter-web</artifactid>
-    </dependency>
-    <dependency>
-        <group工d>org.springframework.boot</groupid>
-        <artifactid>spring-boot-starter-test</artifactid>
-    <scope>test</scope>
-    </dependency>
-    <dependency>
-        <groupid>org.springframework.cloud</groupid>
-        <artifactid>spring-cloud-starter-eureka</artifactid>
-    </dependency>
-</dependencies>
-```
+![](2.png)
 
-接着， 改造/hello 请求处理接口
+现在我们 将一个的 springboot 服务加入到 eureka 服务中去作为服务提供者 maven 配置与上面是一样的
 
 ```java
-@RestController 
-public class HelloCon七roller { 
 
-    private final Logger logger = Logger.getLogger(getClass());
+// 启动类上面加上 @EnableEurekaClient 注解
+@EnableEurekaClient
+@SpringBootApplication
+public class DemoProviderApplication {
 
-    @Autowired 
+	public static void main(String[] args) {
+		SpringApplication.run(DemoProviderApplication.class, args);
+	}
+
+}
+
+
+@RestController
+@RequestMapping
+public class Controller {
+
+    private final Logger logger = Logger.getLogger(this.getClass().getName());
+
+    // 将 org.springframework.cloud.client.discovery.DiscoveryClient; 注入进来
+    @Autowired
     private DiscoveryClient client;
 
-    @RequestMapping(value = "/hello", method= RequestMethod.GET)
-    public String index() { 
-        Service Instance instance = client.getLocalServiceinstance(); 
-        logger.info("/hello, host:" + instance.getHost() + " ， service id:" + instance.getServiceid());
-        return "Hello World";
+    @GetMapping(value = "/text")
+    public String text() {
+        logger.info("调用了接口");
+        return "Hello Word";
     }
+
 }
 ```
 
-然后， 在主类中通过加上 @EnableDiscoveryClient 注解， 激活 Eureka 中的DiscoveryClient 实现（自动化配置， 创建 DiscoveryClient 接口针对 Eureka 客户端的 EurekaDiscoveryClient 实例）
+在配置文件中指定要连接的 Eureka 的服务地址
+
+```
+#服务注册中心端口号
+server.port=1112
+
+spring.application.name=hello-service
+
+eureka.client.serviceUrl.defaultZone=http://localhost:1111/eureka/
+```
+
+然后启动服务，会发现，已经有服务了，名称是 HELLO-SERVICE， 来自于 windows10.microdone.cn:hello-service:1112
+
+![](3.png)
+
+同理我们再启动一个 provider，指定不同的端口，能看到多个provider是用逗号隔开的
+
+![](4.png)
+
+接下来，我们来做一个服务的消费者，一样的创建一个新的 spring boot 项目，maven 配置与上面的一样
 
 ```java
-@EnableDiscoveryClient 
-@SpringBootApplication 
-public class HelloApplication {
+
+// 启动类需要注入 RestTemplate, 使用 @EnableEurekaClient 注解
+@EnableEurekaClient
+@SpringBootApplication
+public class DemoConsumerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(DemoConsumerApplication.class, args);
+    }
+
+    /**
+     * @return org.springframework.web.client.RestTemplate
+     */
+    @Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
 }
-```
-我们需要在 application. properties 配置文件中， 通 过 spring.application.name属性来为服务命名，比如命名 为 hello-service。 再通过 eureka.client.serviceUrl.defaultZone属性来指定服务注册中心的地址， 这里我们指定为之前构建的服务注册中心地址， 完整配置如下所示：
 
-```yml
-spring:
-    application:
-        name: hello-service
-eureka:
-    client:
-        serviceUrl:
-            defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+// Controller
+
+@RestController
+@RequestMapping("index")
+public class Controller {
+
+    @Autowired
+    private RestTemplate restTemplate;
+
+    @RequestMapping("get")
+    public String get() {
+        // 我们想请求的远程服务，hello-service 是服务名称，/text 是具体的接口
+        String memberUrl = "http://hello-service/text"; 
+        String result = restTemplate.getForObject(memberUrl, String.class);
+        System.out.println("result: " + result);
+        return result;
+    }
+
+}
+
 ```
+启动我们的 consumer， 可以在 Eureka 的 web 界面上看见多了 consumer 
+
+![](5.png)
+
+然后请求消费者提供的接口 http://127.0.0.1:1113/index/get 可以看见我们两个consumer在交替的打印日志。
+
+
+### 使用 Ribbon
+
+Ribbon 可以让我们轻松地将面向服务的REST模版请求（RestTemplate）自动转换成客户端负载均衡的服务调用。Ribbon 只是一个工具类框架，但是微服务间的调用，API网关的请求转发等内容，实际上都是通过Ribbon来实现的，包括后续我们将要介绍的Feign，它也是基于Ribbon实现的工具。
+
+其实我们已经使用过 Ribbon 了就是 @LoadBalanced 这个注解，在 **org.springframework.cloud:spring-cloud-netflix-eureka-server** 里面默认也添加了 Ribbon 的依赖,
+
+![](6.png)
+
+Ribbon 实现的方式是给增加了 @LoadBalanced 这个注解的 RestTemplate 添加拦截器，在拦截器里面通过Ribbon选取服务实例，然后将请求的服务器地址中的名称替换成Ribbon选取服务实例的IP和端口
+
+如果没有 @LoadBalanced，RestTemplate 是不具备服务名调用的方式的。那么这个小小的注解，为何如此厉害，我们来深入分析一下它的原理。
+
+关注这个类  **LoadBalancerAutoConfiguration**
+
+在这个类里面 注入了所有加了 @LoadBalanced 注解的 restTemplate 的 Bean 实例
+
+```java
+
+// 注入有 @LoadBalanced 的 RestTemplate
+@LoadBalanced
+@Autowired(required = false)
+private List<RestTemplate> restTemplates = Collections.emptyList();
+
+@Bean
+@ConditionalOnMissingBean
+public RestTemplateCustomizer restTemplateCustomizer(final LoadBalancerInterceptor loadBalancerInterceptor) {
+    return restTemplate -> {
+        List<ClientHttpRequestInterceptor> list = new ArrayList<>(restTemplate.getInterceptors());
+        list.add(loadBalancerInterceptor);
+        restTemplate.setInterceptors(list); // 加入拦截器
+    };
+}
+
+// 在拦截器里面 LoadBalancerInterceptor 从
+
+this.requestFactory.createRequest(request, body, execution));
+
+// 点进去 进入到 LoadBalancerRequestFactory 可以看到
+
+HttpRequest serviceRequest = new ServiceRequestWrapper(request, instance, this.loadBalancer);
+
+// 点进去 进入到 ServiceRequestWrapper
+
+URI uri = this.loadBalancer.reconstructURI(this.instance, getRequest().getURI());
+
+// 点进去 进入到 RibbonLoadBalancerClient
+
+return context.reconstructURIWithServer(server, uri);
+
+// 点进去 进入到 LoadBalancerContext 可以看见在根据 server 转换 IP 和 端口
+
+public URI reconstructURIWithServer(Server server, URI original) {
+    String host = server.getHost();
+    int port = server.getPort();
+    ...
+    URI newURI = new URI(sb.toString());
+    return newURI;         
+}
+
+```
+
+后面会专门讲 Ribbon
 
 ### 服务注册中心的高可用
 
@@ -283,48 +446,9 @@ eureka:
         serviceUrl:
             defaultZone: http://peerl:llll/eureka/,http://peer2:lll2/eureka/
 ```
+
 若此 时断开peer1, 由于compute-service同时也向peer2注册， 因此在peer2上的其他服务依然能访问到hello-service, 从而实现了服务注册中心的高可用。
 
-
-### 服务发现与消费
-
-我们新增 Ribbon 模块
-
-```xml
-<dependencies> 
-    <dependency> 
-        <groupid>org.springframework.boot</groupid> 
-        <artifactid>spring-boot-starter-web</artifac七Id>
-    </dependency> 
-    <dependency> 
-        <groupid>org.springframework.cloud</groupid> 
-        <artifactid>spring-cloud-starter-eureka</artifactid> 
-    </dependency> 
-    <dependency> 
-        <groupid>org.springframework.cloud</groupid> 
-        <artifactid>spring-cloud-starter-ribbon</artifactid> 
-    </dependency> 
-</dependencies>
-```
-
-通过 @EnableDiscoveryClient 注解让该应用注册为 Eureka 客户端应用， 以获得服务发现的能力。并通过@LoadBalanced 注解开启客户端负载均衡。
-
-```java
-@EnableDiscoveryClient
-@SpringBootApplication
-public class ConsumerApplication {
-
-    @LoadBalanced 
-    RestTemplate restTemplate() { 
-        return new RestTemplate(); 
-    }
-
-    public static void main(String[] args) {
-        SpringApplication.run(ConsumerApplication.class, args); 
-    }
-}
-```
-这样，两个服务会交替的打印
 
 ### 服务注册
 “服务提供者” 在启动的时候会通过发送REST请求的方式将自己注册到 EurekaServer 上， 同时带上了自身服务的一些元数据信息。
