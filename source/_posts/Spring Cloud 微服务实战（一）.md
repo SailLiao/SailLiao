@@ -368,7 +368,7 @@ public class Controller {
 
 ![](5.png)
 
-然后请求消费者提供的接口 http://127.0.0.1:1113/index/get 可以看见我们两个consumer在交替的打印日志。
+然后请求消费者提供的接口 http://127.0.0.1:1113/index/get 可以看见我们两个 provider 在交替的打印日志。
 
 
 ### 使用 Ribbon
