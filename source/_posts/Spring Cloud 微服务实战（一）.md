@@ -389,6 +389,18 @@ Ribbon 实现的方式是给增加了 @LoadBalanced 这个注解的 RestTemplate
 
 ```java
 
+
+@Configuration
+// RestTemplate 类必须存在千当前工程的环境中
+@ConditionalOnClass(RestTemplate.class)
+// 在Spring的Bean工程中必须有 LoadBalancerClient 的实现 Bean
+@ConditionalOnBean(LoadBalancerClient.class)
+@EnableConfigurationProperties(LoadBalancerRetryProperties.class)
+public class LoadBalancerAutoConfiguration {
+
+}
+
+
 // 注入有 @LoadBalanced 的 RestTemplate
 @LoadBalanced
 @Autowired(required = false)
