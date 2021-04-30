@@ -22,5 +22,8 @@
     "hexo-renderer-pug": "^1.0.0",
     "hexo-renderer-stylus": "^2.0.1",
     "hexo-server": "^2.0.0"
+  },
+  "devDependencies": {
+    "hexo-douban": "^1.1.3"
   }
 }

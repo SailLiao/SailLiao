@@ -257,5 +257,120 @@ ZoneAwareLoadBalancer 默认会用轮询的方式来访问
 
 该策略是对 RoundRobinRule 的扩展， 增加了根据实例的运行情况来计算权重， 并根据权重来挑选实例， 以达到更优的分配效果。
 
+* 定时任务
 
+启动定时任务，为每个服务的实例计算权重，任务默认30秒执行一次
 
+* 权重计算
+
+1. 计算权重区间上限
+
+举个简单的例子来理解这个计算过程， 假设有4个实例A、 B、 C、 D, 它们的平均响应时间为10、40、 80、 100, 所以总响应时间是10 +40 + 80 + 100 = 230, 每个实例的权重为总响应时间与实例自身的平均响应时间的差的累积所得， 所以实例A、 B、 C、 D 的权重分别如下所示：
+
+实例A: 230 - 10        = 220
+实例B: 220 + (230-40)  = 410
+实例C: 410 + (230- 80) = 560
+实例D: 560 + (230-100) = 690
+
+对应的权重区间
+
+实例A: [O,   220]
+实例B: (220, 410]
+实例C: (410, 560]
+实例D: (560, 690)
+
+### ClientConfigEnabledRoundRobinRule
+
+它的内部定义了一个 RoundRobinRule 策略，也就是线性轮询机制，但是我们一般不直接使用，这个类用来做继承使用，在线性轮询时候额外的增加一些功能。
+
+## 配置详解
+
+### 自动化配置
+
+* IClientConfig
+
+Ribbon 的客户端配置，默认采用 com.netflix.client.config.DefaultClientConfigimpl 实现
+
+* IRule
+
+Ribbon 的负载均衡策略 ， 默认采用 com.netflix.loadbalancer.ZoneAvoidanceRule 实现，该策略能够在多区域环境下选出最佳区域的实例进行访问。
+
+* IPing
+
+Ribbon 的实例检查策略，默认采用com.netflix.loadbalancer.NoOpPing 实现， 该检查策略是一个特殊的实现，实际上它并不会检查实例是否可用， 而是始终返回true, 默认认为所有服务实例都是可用的。
+
+* ServerList<Server>
+
+服务实例清单的维护机制， 默认采用 com.netflix.loadbalancer.ConfigurationBasedServerList 实现。
+
+* ServerListFilter<Server>
+
+服务实例清单过滤机制， 默认采用 org.springframework.cloud.netflix.ribbon.ZonePreferenceServerListFilter 实现， 该策略能够优先过滤出与请求调用 方处于同区域的服务实例。
+
+* ILoadBalancer
+
+负载均衡器， 默认采用 com.netflix.loadbalancer.ZoneAwareLoadBalancer 实现， 它具备了区域感知的能力。
+
+只要在 Spring Boot 中创建的对应实例就能覆盖这些默认实现，例如下面，创建了PingUrl 实例，所以默认的 NoPing 实例就不会被创建
+
+```java
+@Configuration
+public class MyRibbonConfiguration {
+    @Bean
+    public IPing ribbonPing(IClientConfig config) {
+        return new PingUrl();
+    }
+}
+```
+
+### 参数配置
+
+Robbin 通常有两种配置方式
+
+* 全局配置
+
+格式 ribbon.< key>=<value>，类似
+
+```java
+ribbon.ConnectTimeout=250
+```
+
+* 指定客户端配置
+
+格式 <client>.ribbon.<key>=<value>
+
+```java
+hello-service.ribbon.listOfServers=localhost:8001,localhost:8002, localhost:8003
+```
+
+## 与 Eureka 结合
+
+当 Spring Cloud 的应用中同时引入Spring Cloud Ribbon 和 Spring CloudEureka 依赖时， 会触发 Eureka 中实现的对 Ribbon 的自动化配置。
+
+Ribbon 默认实现了区域亲和策略，可以将不同机房的实例，配置成不同的区域值，作为跨区域容错机制的实现，很简单的用配置来指定
+
+```java
+eureka.instance.metadataMap.zone=shanghai
+```
+
+结合的时候也可以禁用 Eureka 对 Ribbon 的服务实例的维护实现。
+
+## 重试机制
+
+### CAP
+
+CAP原则又称CAP定理，指的是在一个分布式系统中，Consistency（一致性）、 Availability（可用性）、Partition tolerance（分区容错性、可靠性），三者不可得兼。
+
+Eureka 强调了 CAP 中的 AP ，与 Zookeeper 这类强调 CP 的服务框架最大的区别就是
+
+**Eureka 为了实现更高的可用性，牺牲了一定的一致性，在极端情况下宁愿接收故障实例也不要丢掉“健康”实例**
+
+例如，当服务注册中心因为网络故障而断开时，由于所有服务实例无法维持心跳，在强调 AP 的服务治理框架中会把所有服务实例都剔除掉，而 Eureka 则会因为超过85%的实例丢失心跳而会触发保护机制，注册中心将会保留此时的所有节点， 以实现服务间依然可以进行互相调用的场景， 即使其中有部分故障节点， 但这样做可以继续保障大多数的服务正常消费。
+
+## 总结
+
+简单介绍了 Rioon 和 Eureka
+
+## 来源
+
+[Spring Cloud 微服务实战](https://book.douban.com/subject/27025912/)

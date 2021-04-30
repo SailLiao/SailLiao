@@ -13,9 +13,14 @@ menu:
    标签: /tags/ || fas fa-tags
    # 分类: /categories/ || fas fa-folder-open
    多媒体||fas fa-list:
-     - 音乐 || http://music.sailliao.top || fas fa-music
-     - 电影 || http://emby.sailliao.top || fas fa-video
-     - 图书 || http://calibre.sailliao.top/ || fas fa-book
+     #- 音乐 || http://music.sailliao.top || fas fa-music
+     #- 电影 || http://emby.sailliao.top || fas fa-video
+     #- 图书 || http://calibre.sailliao.top/ || fas fa-book
+     - 游戏 || /games/ || fas fa-gamepad
+     - 电影 || /movies/ || fas fa-video
+     - 图书 || /books/ || fas fa-book
+
+
    工具||fas fa-list:
      - 数据结构可视化 || https://www.cs.usfca.edu/~galles/visualization/Algorithms.html || fas fa-tools
    # 友链: /link/ || fas fa-link
