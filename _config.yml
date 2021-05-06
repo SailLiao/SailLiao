@@ -111,16 +111,16 @@ theme: butterfly
     #coding: 'https://e.coding.net/liaozifan/blog/deploy.git'
   #branch: master
 
-douban:
-  user: 143041639  # 你的豆瓣ID
-  builtin: true
-  book:
-    title: '那些年，我翻阅过的书'
-    quote: '思想和身体，总有一个在路上'
-  movie:
-    title: '那些年，我追过的电影'
-    quote: '过去、现在、和未来'
-  game:
-    title: '那些年，我玩过的游戏'
-    quote: '还记得你曾经的游戏角色吗'
-  timeout: 10000
+# douban:
+#   user: 143041639  # 你的豆瓣ID
+#   builtin: true
+#   book:
+#     title: '那些年，我翻阅过的书'
+#     quote: '思想和身体，总有一个在路上'
+#   movie:
+#     title: '那些年，我追过的电影'
+#     quote: '过去、现在、和未来'
+#   game:
+#     title: '那些年，我玩过的游戏'
+#     quote: '还记得你曾经的游戏角色吗'
+#   timeout: 10000
