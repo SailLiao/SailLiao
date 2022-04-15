@@ -12,10 +12,10 @@ menu:
    归档: /archives/ || fas fa-archive
    标签: /tags/ || fas fa-tags
    # 分类: /categories/ || fas fa-folder-open
-   #多媒体||fas fa-list:
-    #- 音乐 || http://music.sailliao.top || fas fa-music
-    #- 电影 || http://emby.sailliao.top || fas fa-video
-    #- 图书 || http://calibre.sailliao.top/ || fas fa-book
+   # 多媒体||fas fa-list:
+    # - 音乐 || http://music.sailliao.top || fas fa-music
+    # - 电影 || http://emby.sailliao.top || fas fa-video
+    # - 图书 || http://calibre.sailliao.top/ || fas fa-book
     #  - 游戏 || /games/ || fas fa-gamepad
     #  - 电影 || /movies/ || fas fa-video
     #  - 图书 || /books/ || fas fa-book
@@ -23,6 +23,7 @@ menu:
 
    工具||fas fa-list:
      - 数据结构可视化 || https://www.cs.usfca.edu/~galles/visualization/Algorithms.html || fas fa-tools
+     - 数据结构可视化 || https://visualgo.net/zh || fas fa-heart
    # 友链: /link/ || fas fa-link
    # 关于: /about/ || fas fa-heart
 
@@ -96,7 +97,7 @@ avatar:
   effect: false
 
 # The banner image of home page
-index_img: https://sailliao.oss-cn-beijing.aliyuncs.com/img/1.png
+index_img: https://img9.51tietu.net/pic/20190917/knyndyi35inknyndyi35in.jpg
 
 # If the banner of page not setting, it will show the top_img
 default_top_img:

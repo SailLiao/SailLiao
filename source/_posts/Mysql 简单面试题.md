@@ -4,7 +4,7 @@ date: 2020-12-31 15:01:41
 tags: 
     - Mysql
     - 面试
-cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/1.jpg
+cover: https://img9.51tietu.net/pic/2019-091402/tdhwjpe1nrctdhwjpe1nrc.jpg
 ---
 
 ## 索引的数据结构
