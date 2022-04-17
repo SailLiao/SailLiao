@@ -12,7 +12,9 @@ cover: https://img10.51tietu.net/pic/20191029/tgrhvdbw3wjtgrhvdbw3wj.jpg
 服务拆分后，如果其中某一个服务调用过慢，会导致调用方线程因为等待服务响应而挂起知道调用失败，在高并发的情况下，这些挂起的服务，会让新的请求被阻塞从而导致整个服务不可用。
 **断路器** 能很好的解决这一情况
 
-![](1.png)
+![](https://sailliao.oss-cn-beijing.aliyuncs.com/img/spring-cloud-3-1.png)
+
+在 2020-12-22 日 spring cloud 移除了 zuul Hystrix 等组件，原因是 2018 年开始 Netflix 公司就不再对 Hystrix、Ribbon、Zuul、Eureka 等进行新特性开发。替代可以使用 Spring Cloud Alibaba
 
 ## 原理分析
 
@@ -234,7 +236,7 @@ Hystrix会将 “ 成功 ”、 “ 失败 ”、 “ 拒绝 ”、 “ 超时 �
 
 ## 9. 返回成功的响应
 
-![](2.png)
+![](https://sailliao.oss-cn-beijing.aliyuncs.com/img/spring-cloud-3-2.png)
 
 
 # 断路器原理

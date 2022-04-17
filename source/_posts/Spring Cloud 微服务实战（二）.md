@@ -24,13 +24,20 @@ get 主要有两种
 ```java
 
 RestTemplate restTemplate = new RestTemplate();
-ResponseEntity<String> responseEntity = restTemplate.getForEntity("http://USERSERVICE/user?name={1} ", String. class, "didi") ;
+ResponseEntity<String> responseEntity = restTemplate.getForEntity(
+    "http://USERSERVICE/user?name={1} ", 
+    String.class, 
+    "didi"
+) ;
 String body = responseEntity.getBody();
 
 // 如果想返回对象
-
 RestTemplate restTemplate = new RestTemplate();
-ResponseEntity<User> responseEnti七y = restTemplate.getForEntity("http://USERSERVICE/user?name={l}", User.class, "didi");
+ResponseEntity<User> responseEnti七y = restTemplate.getForEntity(
+    "http://USERSERVICE/user?name={l}", 
+    User.class, 
+    "didi"
+);
 User body = responseEntity.getBody();
 
 ```
@@ -122,7 +129,7 @@ public List<Server> getAllServers();
 ```
 都是见名知意的接口，Server 对象定义是一个传统的服务端节点，在该类中存储了服务端节点的一些元数据信息， 包括 host、 port 以及一些部署信息等。下面是 ILoadBalancer 一些 diagrams
 
-![](1.png)
+![](https://sailliao.oss-cn-beijing.aliyuncs.com/img/spring-cloud-2-1.png)
 
 那么 ribbon 在 整合 Spring cloud 的时候默认使用的是那个均衡器呢?在类 RibbonClientConfiguration 中能找到
 
@@ -213,7 +220,7 @@ public List<T> getInitialListOfServers();
 public List<T> getUpdatedListOfServers();   
 ```
 
-![](2.png)
+![](https://sailliao.oss-cn-beijing.aliyuncs.com/img/spring-cloud-2-2.png)
 
 可以看出 ServerList 有多个实现，那么在 DynamicServerListLoadBalancer 中使用的是那个呢，在类 EurekaRibbonClientConfiguration 中，能找到
 
@@ -239,7 +246,7 @@ ZoneAwareLoadBalancer 默认会用轮询的方式来访问
 
 通过 IRule 能看出有很多实现
 
-![](3.png)
+![](https://sailliao.oss-cn-beijing.aliyuncs.com/img/spring-cloud-2-3.png)
 
 ### RandomRule
 
