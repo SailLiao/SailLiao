@@ -2,7 +2,7 @@
 title: Http详解
 date: 2021-05-28 14:05:03
 tags: 网络
-cover: https://img13.51tietu.net/pic/2019121514/qgz3e2pmbd5qgz3e2pmbd5.png
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-l3p2jr.jpg
 ---
 
 # 引入

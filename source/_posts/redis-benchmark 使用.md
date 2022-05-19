@@ -2,7 +2,7 @@
 title: 'redis-benchmark 使用'
 date: 2020-12-31 14:18:01
 tags: Redis
-cover: https://img9.51tietu.net/pic/2019-091404/4k54k4avjl44k54k4avjl4.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-y8om1x.jpg
 ---
 
 Redis 自带了一个叫 redis-benchmark 的工具来模拟 N 个客户端同时发出 M 个请求。

@@ -2,7 +2,7 @@
 title: Java基础面试积累
 date: 2020-12-24 17:09:58
 tags: 面试
-cover: https://img9.51tietu.net/pic/2019-091409/teyacy0brs3teyacy0brs3.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-z86v5w.jpg
 ---
 
 ## new一个Object对象占用多少内存？

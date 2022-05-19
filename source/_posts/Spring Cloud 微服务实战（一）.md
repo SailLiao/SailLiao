@@ -2,7 +2,7 @@
 title: Spring Cloud 微服务实战（一）'
 date: 2021-02-02 14:51:22
 tags: Spring Cloud
-cover: https://img9.51tietu.net/pic/2019-091403/0skqbqkfkdi0skqbqkfkdi.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-k75lg1.jpg
 ---
 
 看书做的简单笔记，书中有些方式已经过时，用的新的版本来做的，主要是学习的目的

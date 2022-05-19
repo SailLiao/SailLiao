@@ -2,7 +2,7 @@
 title: Mysql服务读取描述失败，错误代码：2
 date: 2020-12-24 17:36:37
 tags: Mysql
-cover: https://img9.51tietu.net/pic/2019-091403/pxrxw44qm24pxrxw44qm24.png
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-72798e.jpg
 ---
 
 每次用360清理机器后，我的mysql服务就出问题，在服务里面看mysql的被删了，然后我就把360删了

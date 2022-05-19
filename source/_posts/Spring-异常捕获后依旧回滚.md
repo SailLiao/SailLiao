@@ -2,7 +2,7 @@
 title: Spring 异常捕获后依旧回滚
 date: 2022-04-07 09:17:22
 tags: Spring
-cover:  https://w.wallhaven.cc/full/6o/wallhaven-6ozkzl.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-pkzpoj.jpg
 ---
 
 # 问题抛出

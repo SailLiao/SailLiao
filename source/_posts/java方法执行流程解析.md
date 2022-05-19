@@ -2,7 +2,7 @@
 title: Java方法执行流程解析
 date: 2020-12-24 20:50:27
 tags: Java
-cover: https://img9.51tietu.net/pic/2019-091321/rwls3y4ulvyrwls3y4ulvy.png
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-g7gvo3.png
 ---
 
 Java程序运行时，必须经过编译和运行两个步骤。首先将后缀名为.java的源文件进行编译，最终生成后缀名为.class的字节码文件。

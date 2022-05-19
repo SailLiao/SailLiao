@@ -2,7 +2,7 @@
 title: VisualVM 的使用
 date: 2021-09-08 15:00:02
 tags: 虚拟机
-cover: https://img9.51tietu.net/pic/2019-091402/avh2tfl0aknavh2tfl0akn.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-6o19el.jpg
 ---
 
 # 下载和插件安装

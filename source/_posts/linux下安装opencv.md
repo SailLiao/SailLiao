@@ -2,7 +2,7 @@
 title: Linux下安装opencv
 date: 2020-12-28 10:56:35
 tags: opencv
-cover: https://img9.51tietu.net/pic/2019-091400/opm22jae3hqopm22jae3hq.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-3zjexv.jpg
 ---
 
 本次安装的是 opencv3.4.1，在java里面对应的maven配置是

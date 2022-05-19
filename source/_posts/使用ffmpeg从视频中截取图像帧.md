@@ -2,7 +2,7 @@
 title: 使用ffmpeg从视频中截取图像帧
 date: 2020-12-25 15:38:14
 tags: ffmpeg
-cover: https://img9.51tietu.net/pic/2019-091400/o4tvxteyhcko4tvxteyhck.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-9mprjw.jpg
 ---
 
 在抽取视频帧方面，ffmpeg比opencv java版速度好太多了

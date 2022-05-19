@@ -2,7 +2,7 @@
 title: Bitmap 布隆过滤器
 date: 2021-09-10 17:23:20
 tags: 数据结构
-cover: https://img9.51tietu.net/pic/2019-091403/pxrxw44qm24pxrxw44qm24.png
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-x8gkpo.jpg
 ---
 
 # 概念

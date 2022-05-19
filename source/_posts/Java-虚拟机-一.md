@@ -2,7 +2,7 @@
 title: Java 虚拟机 一
 date: 2021-08-04 11:35:13
 tags: 虚拟机
-cover: https://img9.51tietu.net/pic/20190917/qgqsgotguz3qgqsgotguz3.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-72kdvo.jpg
 ---
 
 # 运行时数据区

@@ -2,7 +2,7 @@
 title: Fork/Join框架
 date: 2021-08-02 15:18:32
 tags: Java
-cover: https://img20.51tietu.net/pic/2016-081006/20160810060908gld1ogsh1yq.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-28lw2y.jpg
 ---
 
 # 什么是 Fork/Join

@@ -2,7 +2,7 @@
 title: Spring Cloud 微服务实战（三）
 date: 2021-04-12 16:49:56
 tags: Spring Cloud
-cover: https://img10.51tietu.net/pic/20191029/tgrhvdbw3wjtgrhvdbw3wj.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-57or77.jpg
 ---
 
 书接上回

@@ -2,7 +2,7 @@
 title: 'Jstat 使用'
 date: 2020-12-29 14:24:19
 tags: JVM
-cover: https://img2.51tietu.net/upload/www.51tietu.net/2016-042800/20160428005200c5mqj5fx1ai.jpg
+cover: https://sailliao.oss-cn-beijing.aliyuncs.com/img/wallhaven-m9e2lm.jpg
 ---
 
 # 类加载统计
